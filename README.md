@@ -25,8 +25,8 @@ Example folder structure:
 Here is a very short migration example, just straight forward SQL like we all know it:
 ```sql
 CREATE TABLE user (
-  id                BINARY(16)    NOT NULL,
-  email             VARCHAR(255)  NOT NULL,
+  id    BINARY(16)   NOT NULL,
+  email VARCHAR(255) NOT NULL,
 );
 
 ALTER TABLE user ADD CONSTRAINT unique_email UNIQUE(email);
