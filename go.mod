@@ -1,3 +1,3 @@
-module github.com/reefercoding/go-migrator
+module github.com/reefercoding/gomigrator
 
 go 1.17
