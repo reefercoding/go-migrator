@@ -46,8 +46,8 @@ import (
 
   // Example internal packages
   "github.com/reefercoding/example-gomigrator/internal/config"
-	"github.com/reefercoding/example-gomigrator/internal/server"
-	"github.com/reefercoding/example-gomigrator/internal/storage"
+  "github.com/reefercoding/example-gomigrator/internal/server"
+  "github.com/reefercoding/example-gomigrator/internal/storage"
 )
 
 func main() {
@@ -55,9 +55,9 @@ func main() {
   cfg := config.New()
   // Create *sql.DB
   db, err := storage.NewMysql(&cfg.MySQLConfig)
-	if err != nil {
-		golog.Fatalf("could not connect to mysql: %w", err)
-	}
+  if err != nil {
+    golog.Fatalf("could not connect to mysql: %w", err)
+  }
   if cfg.Mode == config.MODE_MIGRATE {
     // Stub logger if you like
     gomigrator.InfoLogger = golog.Infof
@@ -68,15 +68,15 @@ func main() {
   }
   if cfg.Mode == config.MODE_API {
     s := server.New(cfg, db)
-		golog.Infof("starting http server on address...")
-		forever := make(chan bool)
-		go func() {
-			if err := http.ListenAndServe(cfg.ListenAddress, s.Router); err != nil {
-				golog.Fatalf("http server crashed: %w", err)
-			}
-		}()
-		golog.Infof("successfully started http server, listening on: %s", cfg.ListenAddress)
-		<-forever
+    golog.Infof("starting http server on address...")
+    forever := make(chan bool)
+    go func() {
+      if err := http.ListenAndServe(cfg.ListenAddress, s.Router); err != nil {
+        golog.Fatalf("http server crashed: %w", err)
+      }
+    }()
+    golog.Infof("successfully started http server, listening on: %s", cfg.ListenAddress)
+    <-forever
   }
   golog.Infof("exiting application")
 }
