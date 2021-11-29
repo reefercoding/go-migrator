@@ -30,7 +30,7 @@ type migration struct {
 	path    string
 }
 
-// Migrate starts the migrate process by using a given 
+// Migrate starts the migrate process by using a given
 // *sql.DB (must contain valid connection to SQL instance),
 // and a migrationsDir which must be an existing directory.
 func Migrate(d *sql.DB, migrationsDir string) error {
@@ -67,7 +67,7 @@ func Migrate(d *sql.DB, migrationsDir string) error {
 	return nil
 }
 
-// Executes a migration and rolls back on failure, 
+// Executes a migration and rolls back on failure,
 // keep in mind that some MySQL actions cannot be rolled back (e.g. creating a table).
 func executeMigration(m migration) error {
 	mgFile, err := os.ReadFile(m.path)
@@ -119,7 +119,7 @@ func createMigratorTable() error {
 	_, err := db.Exec(
 		fmt.Sprintf(
 			`CREATE TABLE IF NOT EXISTS %s (version INT NOT NULL, title VARCHAR(255) NOT NULL, 
-				executed_at DATETIME NOT NULL DEFAULT NOW(), UNIQUE(version))`, 
+				executed_at DATETIME NOT NULL DEFAULT NOW(), UNIQUE(version))`,
 			GomigratorTable,
 		),
 	)
@@ -134,7 +134,7 @@ func checkLastMigration() (int, error) {
 	var lastVersion int
 	row := db.QueryRow(
 		fmt.Sprintf(
-			"SELECT version FROM %s ORDER BY version DESC LIMIT 1", 
+			"SELECT version FROM %s ORDER BY version DESC LIMIT 1",
 			GomigratorTable,
 		),
 	)
@@ -169,21 +169,21 @@ func scanMigrationsDir(migrationsDir string) ([]int, map[int]migration, error) {
 		parts := strings.Split(filename, "_")
 		if len(parts) != 2 {
 			return nil, nil, fmt.Errorf(
-				`illegal migration filename %s, can only contain _ to divide version and name like 1_create-user-table.sql`, 
+				`illegal migration filename %s, can only contain _ to divide version and name like 1_create-user-table.sql`,
 				item.Name(),
 			)
 		}
 		version, err := strconv.Atoi(parts[0])
 		if err != nil {
 			return nil, nil, fmt.Errorf(
-				"illegal version in filename %s, version can only be a single integer like 1_create-user-table.sql", 
+				"illegal version in filename %s, version can only be a single integer like 1_create-user-table.sql",
 				item.Name(),
 			)
 		}
 		versions = append(versions, version)
 		foundMigrations[version] = migration{
-			name: parts[1],
-			path: filepath.Join(migrationsDir, item.Name()),
+			name:    parts[1],
+			path:    filepath.Join(migrationsDir, item.Name()),
 			version: version,
 		}
 	}
