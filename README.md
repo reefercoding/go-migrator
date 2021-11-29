@@ -12,7 +12,7 @@ The file names need to be structured in the following way:
 ```bash
 <version>_<name>.sql
 ```
-Where the version is always an integer, incremented from the last version.
+Where the version is always an integer, incremented from the last version.  
 The name is the name of the migration and preferably describes it.  
 **The name may not contain an underscore (_) character.**
 
