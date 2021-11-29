@@ -3,8 +3,10 @@ This package contains a very small MySQL migration solution for go written in 1 
 The aim of this package is to be very small but highly functional.
 
 ## Roadmap
-  1. Add testing
-  1. Whatever issue/idea comes up...
+  1. Create error variables
+  2. Add testing
+  3. Up/Down functionality
+  4. Whatever issue/idea comes up...
 
 ## Migration file structure
 The migrations are regular SQL files containing sql statements.  
