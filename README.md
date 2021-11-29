@@ -1,5 +1,5 @@
 # gomigrator
-This package contains a very small MySQL migration solution for go written in 1 file.
+This package contains a very small MySQL migration solution for go written in 1 file.  
 The aim of this package is to be very small but highly functional.
 
 ## Roadmap
@@ -7,7 +7,7 @@ The aim of this package is to be very small but highly functional.
   1. Whatever issue/idea comes up...
 
 ## Migration file structure
-The migrations are regular SQL files containing sql statements.
+The migrations are regular SQL files containing sql statements.  
 The file names need to be structured in the following way:
 ```bash
 <version>_<name>.sql
