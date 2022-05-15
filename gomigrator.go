@@ -80,7 +80,7 @@ func executeMigration(m migration) error {
 		return fmt.Errorf("could not initiate transaction for migration %s, error: %w", m.name, err)
 	}
 	for _, q := range queries {
-		if q == "" {
+		if strings.TrimSpace(q) == "" {
 			continue
 		}
 		_, err := tx.Exec(q)
